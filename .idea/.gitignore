@@ -6,3 +6,16 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# IDE files
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data and models (you’ll probably want to avoid committing these)
+data/
+models/
+*.h5
+*.pkl
