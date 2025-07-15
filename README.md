@@ -22,7 +22,7 @@ Acknowledgments
 
     OpenCV — image processing
 
-    OpenMoji — open source emoji set (or use your own) 
+    OpenMoji — open source emoji set 
 
     ChatGPT for development assistance and debugging  
 
