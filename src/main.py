@@ -2,7 +2,29 @@
 from deepface import DeepFace
 import cv2
 import numpy as np
+import streamlit as st
+import sys
 
+
+@st.cache_resource
+def load_models():
+    """Pre-load DeepFace models so they're ready when needed!"""
+    # This forces the model to download and initialize
+    try:
+        # A dummy prediction that triggers model loading
+        DeepFace.verify(
+            img1_path="placeholder",
+            img2_path="placeholder",
+            model_name="VGG-Face",
+            enforce_detection=False
+        )
+    except:
+        pass  # We expect this to fail—we just want the download!
+
+    return True
+
+# Call it immediately
+load_models()
 
 def analyze_emotion(image_path):
     # Load image
@@ -62,13 +84,25 @@ def overlay_emoji_on_face(image_path, emoji_path, face_box):
         )
 
     # Show the result
-    cv2.imshow("Emoji Face Swap", img)
+    max_width = 800
+    scale = max_width / img.shape[1]
+    display_img = cv2.resize(img, None, fx=scale, fy=scale)
+    cv2.imshow("Emoji Face Swap", display_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
-    image = r"C:\Users\ethan\PycharmProjects\PythonProject\Data\faces\Sad2.jpg"
+    #run with arg of path to picture
+    image = None
+
+    try:
+        image = sys.argv[1]
+    except IndexError:
+        print("Usage: python3 main.py image_path")
+    except:
+        print("no bueno")
+
     emotion, face_box = analyze_emotion(image)
     emotion_to_emoji = {
         "happy": "😄",
@@ -81,13 +115,13 @@ if __name__ == "__main__":
     }
 
     emotion_to_path = {
-        "happy": "data/emojis/happy.png",
-        "sad": r"C:\Users\ethan\PycharmProjects\PythonProject\Data\emojis\sad.png",
-        "angry": "data/emojis/angry.png",
-        "surprise": "data/emojis/surprise.png",
-        "fear": "data/emojis/fear.png",
-        "disgust": "data/emojis/disgust.png",
-        "neutral": "data/emojis/neutral.png"
+        "happy": "Data/emojis/happy.png",
+        "sad": "Data/emojis/sad.png",
+        "angry": "Data/emojis/angry.png",
+        "surprise": "Data/emojis/surprise.png",
+        "fear": "Data/emojis/fear.png",
+        "disgust": "Data/emojis/disgust.png",
+        "neutral": "Data/emojis/neutral.png"
     }
 
     emoji_path = emotion_to_path[emotion]
