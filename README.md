@@ -16,6 +16,10 @@ This is a Python project that combines:
 - Easy to extend into video or web app
 
 
+<img width="814" height="464" alt="image" src="https://github.com/user-attachments/assets/2042ec07-1da9-484a-9100-f588b9129948" />
+
+
+
 Acknowledgments
 
     DeepFace — emotion detection engine
@@ -23,7 +27,8 @@ Acknowledgments
     OpenCV — image processing
 
     OpenMoji — open source emoji set 
+    
+    Faces from https://faces.mpdl.mpg.de/imeji/collection/IXTdg721TwZwyZ8e?q= 
+    Claude for development assistance and debugging  
 
-    ChatGPT for development assistance and debugging  
-
-    And the pictures I borrowed from the internet.
+    
